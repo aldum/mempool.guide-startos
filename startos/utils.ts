@@ -91,9 +91,9 @@ export const configJsonDefaults = {
     STDOUT_LOG_MIN_PRIORITY: 'info' as const,
     AUTOMATIC_POOLS_UPDATE: false,
     POOLS_JSON_URL:
-      'https://raw.githubusercontent.com/mempool/mining-pools/master/pools-v2.json',
+      'https://raw.githubusercontent.com/Retropex/mining-pools/refs/heads/master/pools-v2.json',
     POOLS_JSON_TREE_URL:
-      'https://api.github.com/repos/mempool/mining-pools/git/trees/master',
+      'https://api.github.com/repos/Retropex/mining-pools/git/trees/master',
     POOLS_UPDATE_DELAY: 604800,
     AUDIT: false,
     RUST_GBT: true,

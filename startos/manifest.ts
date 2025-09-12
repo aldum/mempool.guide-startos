@@ -25,13 +25,13 @@ export const manifest = setupManifest({
   images: {
     frontend: {
       source: {
-        dockerTag: 'mempool/frontend:v3.2.1',
+        dockerTag: 'ghcr.io/retropex/mempoolfrontend:v3.3.0-dev2',
       },
       arch: architectures,
     } as SDKImageInputSpec,
     backend: {
       source: {
-        dockerTag: 'mempool/backend:v3.2.1',
+        dockerTag: 'ghcr.io/retropex/mempoolbackend:v3.3.0-dev2',
       },
       arch: architectures,
     } as SDKImageInputSpec,

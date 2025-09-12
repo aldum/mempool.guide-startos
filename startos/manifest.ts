@@ -8,13 +8,13 @@ const architectures =
 
 export const manifest = setupManifest({
   id: 'mempool',
-  title: 'Mempool',
+  title: 'Mempool.guide',
   license: 'AGPL',
   wrapperRepo: 'https://github.com/Start9Labs/mempool-wrapper',
-  upstreamRepo: 'https://github.com/mempool/mempool',
-  supportSite: 'https://mempool.space/docs/faq',
-  marketingSite: 'https://mempool.space',
-  donationUrl: 'https://mempool.space/sponsor',
+  upstreamRepo: 'https://github.com/Retropex/mempool',
+  supportSite: 'https://mempool.guide/docs/faq',
+  marketingSite: 'https://mempool.guide',
+  donationUrl: 'https://mempool.guide/sponsor',
   docsUrl:
     'https://github.com/Start9Labs/mempool-startos/blob/master/instructions.md',
   description: {
@@ -58,7 +58,10 @@ export const manifest = setupManifest({
       description:
         'A Bitcoin node is needed to subscribe to new block events and provide data for your explorer',
       optional: false,
-      s9pk: 'https://github.com/Start9Labs/bitcoind-startos/releases/download/v28.1.0.3-alpha.8/bitcoind.s9pk',
+      metadata: {
+        title: 'Bitcoin',
+        icon: 'https://bitcoin.org/img/icons/opengraph.png?1749679667',
+      },
     },
     electrs: {
       description: 'Provides an index for address lookups',

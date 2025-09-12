@@ -8,7 +8,7 @@ export const versionGraph = VersionGraph.of({
   current,
   other,
   preInstall: async (effects) => {
-    console.log('Initializing mariadb...')
+    console.log('Initializing MariaDB...')
     await sdk.SubContainer.withTemp(
       effects,
       { imageId: 'mariadb' },

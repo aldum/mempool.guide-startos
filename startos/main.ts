@@ -196,6 +196,14 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
     { user: 'root' },
   )
 
+  await frontendContainer.execFail(
+    ['unlink', '/var/log/nginx/access.log'],
+    { user: 'root' },
+  )
+  await frontendContainer.execFail(
+    ['unlink', '/var/log/nginx/error.log'],
+    { user: 'root' },
+  )
   /**
    *  ======================== Daemons ========================
    */

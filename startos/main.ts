@@ -103,13 +103,15 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
   const syncHealthCheck = {
     display: 'Transaction Indexer',
     fn: async () => {
+      const rpcPort = 8332
+      const btcRpcAddr = `http://bitcoind.startos:${rpcPort}`
       const auth = await readFile(
         `${backendContainer.rootfs}/${btcMountpoint}/${bitcoinConfDefaults.rpccookiefile}`,
         {
           encoding: 'base64',
         },
       )
-      const txIndexReq = fetch('http://bitcoind.startos:8332', {
+      const txIndexReq = fetch(btcRpcAddr, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,7 +132,7 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
           throw new Error(e)
         })
 
-      const ibdStateReq = fetch('http://bitcoind.startos:8332', {
+      const ibdStateReq = fetch(btcRpcAddr, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

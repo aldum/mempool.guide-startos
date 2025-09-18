@@ -10,7 +10,7 @@ export const manifest = setupManifest({
   id: 'mempool',
   title: 'Mempool.guide',
   license: 'AGPL',
-  wrapperRepo: 'https://github.com/Start9Labs/mempool-wrapper',
+  wrapperRepo: 'https://github.com/Start9Labs/mempool-startos',
   upstreamRepo: 'https://github.com/Retropex/mempool',
   supportSite: 'https://mempool.guide/docs/faq',
   marketingSite: 'https://mempool.guide',
@@ -37,7 +37,7 @@ export const manifest = setupManifest({
     } as SDKImageInputSpec,
     mariadb: {
       source: {
-        dockerTag: 'mariadb:10.4.32',
+        dockerTag: 'ghcr.io/linuxserver/mariadb:11.4.8-r0-ls194',
       },
       arch: architectures,
     } as SDKImageInputSpec,
@@ -76,7 +76,7 @@ export const manifest = setupManifest({
     lnd: {
       description: 'Used to provide Lightning Network data',
       optional: true,
-      s9pk: 'https://github.com/Start9Labs/lnd-startos/releases/download/v0.19.2-beta.1-beta.2/lnd.s9pk',
+      s9pk: 'https://github.com/Start9Labs/lnd-startos/releases/download/v0.19.3-beta.1-beta.0/lnd.s9pk',
     },
   },
 })

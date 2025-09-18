@@ -221,6 +221,7 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
         'database',
       ),
       exec: {
+        runAsInit: true,
         command: sdk.useEntrypoint(),
         env: {
           MYSQL_DATABASE: config.DATABASE.DATABASE,

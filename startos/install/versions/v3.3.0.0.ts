@@ -4,8 +4,8 @@ import { load } from 'js-yaml'
 import { configJson } from '../../file-models/mempool-config.json'
 import { configJsonDefaults } from '../../utils'
 
-export const v_3_2_1_2 = VersionInfo.of({
-  version: '3.2.1:2-alpha.0',
+export const v_3_3_3_0 = VersionInfo.of({
+  version: '3.3.0:0-alpha.0',
   releaseNotes: 'Updated for StartOS 0.4.0',
   migrations: {
     up: async ({ effects }) => {

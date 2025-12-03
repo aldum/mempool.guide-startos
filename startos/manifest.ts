@@ -25,13 +25,13 @@ export const manifest = setupManifest({
   images: {
     frontend: {
       source: {
-        dockerTag: 'ghcr.io/retropex/mempoolfrontend:v3.3.0-dev2',
+        dockerTag: 'ghcr.io/retropex/mempoolfrontend:v3.3.0-rc1',
       },
       arch: architectures,
     } as SDKImageInputSpec,
     backend: {
       source: {
-        dockerTag: 'ghcr.io/retropex/mempoolbackend:v3.3.0-dev2',
+        dockerTag: 'ghcr.io/retropex/mempoolbackend:v3.3.0-rc1',
       },
       arch: architectures,
     } as SDKImageInputSpec,
@@ -66,17 +66,17 @@ export const manifest = setupManifest({
     electrs: {
       description: 'Provides an index for address lookups',
       optional: true,
-      s9pk: 'https://github.com/Start9Labs/electrs-startos/releases/download/v0.10.10.0-alpha.1/electrs.s9pk',
+      s9pk: 'https://github.com/Start9Labs/electrs-startos/releases/download/v0.10.10.1-beta.0/electrs.s9pk',
     },
     'c-lightning': {
       description: 'Used to provide Lightning Network data',
       optional: true,
-      s9pk: 'https://github.com/Start9Labs/cln-startos/releases/download/v25.05.0.1-alpha.1/c-lightning.s9pk',
+      s9pk: 'https://github.com/Start9Labs/cln-startos/releases/download/v25.09.3.1-beta.0/c-lightning.s9pk',
     },
     lnd: {
       description: 'Used to provide Lightning Network data',
       optional: true,
-      s9pk: 'https://github.com/Start9Labs/lnd-startos/releases/download/v0.19.3-beta.1-beta.0/lnd.s9pk',
+      s9pk: 'https://github.com/Start9Labs/lnd-startos/releases/download/v0.20.0-beta.1-beta.0/lnd.s9pk',
     },
   },
 })

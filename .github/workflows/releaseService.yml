@@ -3,7 +3,7 @@ name: Release Service
 on:
   push:
     tags:
-      - 'v*.*'
+      - "v*.*"
 
 jobs:
   ReleasePackage:
@@ -21,21 +21,11 @@ jobs:
 
       - name: Build the service package
         id: build
-        env:
-          S9DEVKEY: ${{ secrets.S9DEVKEY }}
         run: |
-          start-cli init
-          if [[ -n "$S9DEVKEY" ]]; then
-            echo "Using developer key from secrets to sign the package."
-            printf '%s' "$S9DEVKEY" > ~/.startos/developer.key.pem
-          else
-            echo "Using newly generated developer key to sign the package."
-          fi
+          start-cli init-key
           RUST_LOG=debug RUST_BACKTRACE=1 make
-          sleep 2
-          MANIFEST_JSON=$(start-cli s9pk inspect *.s9pk manifest)
-          PACKAGE_ID=$(echo "$MANIFEST_JSON" | jq -r '.id')
-          PACKAGE_TITLE=$(echo "$MANIFEST_JSON" | jq -r '.title')
+          PACKAGE_ID=$(start-cli s9pk inspect *.s9pk manifest | jq -r '.id')
+          PACKAGE_TITLE=$(start-cli s9pk inspect *.s9pk manifest | jq -r '.title')
           echo "package_id=${PACKAGE_ID}" >> $GITHUB_ENV
           echo "package_title=${PACKAGE_TITLE}" >> $GITHUB_ENV
           printf "\n SHA256SUM: $(sha256sum ${PACKAGE_ID}.s9pk) \n"
@@ -50,7 +40,7 @@ jobs:
         run: |
           echo "## What's Changed" > change-log.txt
           echo "" >> change-log.txt
-          RELEASE_NOTES=$(start-cli s9pk inspect *.s9pk manifest | jq -r '.releaseNotes') 
+          RELEASE_NOTES=$(start-cli s9pk inspect *.s9pk manifest | jq -r '.releaseNotes')
           echo "${RELEASE_NOTES}" >> change-log.txt
           echo "## SHA256 Hash" >> change-log.txt
           echo '```' >> change-log.txt
@@ -75,9 +65,10 @@ jobs:
           S9REGISTRY: ${{ secrets.S9REGISTRY }}
         run: |
           if [[ -z "$S9DEVKEY" || -z "$S9REGISTRY" ]]; then
-          echo "Publish skipped: One or both of S9DEVKEY and S9REGISTRY secrets are not set."
+            echo "Publish skipped: missing registry credentials."
           else
-          echo "Publishing package to registry..."
-          start-cli --registry https://$S9REGISTRY registry package add ${{ env.package_id }}.s9pk ${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.ref_name }}/${{ env.package_id }}.s9pk
+            mkdir -p ~/.startos
+            echo "$S9DEVKEY" > ~/.startos/developer.key.pem
+            start-cli --registry https://$S9REGISTRY registry package add ${{ env.package_id }}.s9pk ${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.ref_name }}/${{ env.package_id }}.s9pk
           fi
         shell: bash
